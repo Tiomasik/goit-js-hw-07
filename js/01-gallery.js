@@ -1,12 +1,6 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
-
-console.log(galleryItems);
 
 const listGalaryEl = document.querySelector(`.gallery`);
-
-console.log(listGalaryEl);
-
 const makeGalary = galleryItems.map(makeGalaryItem).join('')
 
 function makeGalaryItem({ preview, original}) {
@@ -23,13 +17,26 @@ function makeGalaryItem({ preview, original}) {
 </div>`
 }
 
-// console.log(makeGalary)
-
 listGalaryEl.innerHTML = makeGalary;
 
-// const instance = basicLightbox.create(`
-// 	<h1>Dynamic Content</h1>
-// 	<p>You can set the content of the lightbox with JS.</p>
-// `)
+listGalaryEl.addEventListener('click', onTagsClickList)
 
-// console.log(instance);
+function onTagsClickList(event) {
+  if (event.target.nodeName !== 'IMG') {
+    return
+  }
+  event.preventDefault()
+
+  window.addEventListener('keydown', onEscPress)
+
+  const instance = basicLightbox.create(`
+    <img src="${event.target.dataset.source}">
+`)
+  instance.show()
+
+  function onEscPress(event) {
+    if (event.code === 'Escape') {
+      instance.close()
+    }
+  }
+}
