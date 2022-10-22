@@ -15,7 +15,7 @@ function makeGalaryItem({ preview, original, description}) {
 
 listGalaryEl.innerHTML = makeGalary;
 
-let gallery = new SimpleLightbox('.gallery a', { animationSpeed: 500, captionDelay: 250, captionsData: `alt`});
+let gallery = new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: `alt`});
 
 listGalaryEl.addEventListener('click', onTagsClickList)
 
@@ -23,8 +23,5 @@ function onTagsClickList(event) {
   if (event.target.nodeName !== 'IMG') {
     return
   }
-    event.preventDefault()
-    
-    console.log(event.target)
-    
+    event.preventDefault()  
 }
