@@ -36,7 +36,12 @@ function onTagsClickList(event) {
 
   function onEscPress(event) {
     if (event.code === 'Escape') {
-      instance.close()
+      onCloseInstance()
     }
+  }
+
+  function onCloseInstance() {
+    instance.close()
+    window.removeEventListener('keydown', onEscPress)
   }
 }
