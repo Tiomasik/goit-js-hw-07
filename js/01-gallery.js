@@ -3,7 +3,7 @@ import { galleryItems } from './gallery-items.js';
 const listGalaryEl = document.querySelector(`.gallery`);
 const makeGalary = galleryItems.map(makeGalaryItem).join('')
 
-function makeGalaryItem({ preview, original}) {
+function makeGalaryItem({ preview, original, description}) {
     return `
 <div class="gallery__item">
   <a class="gallery__link" href="${original}">
@@ -11,7 +11,7 @@ function makeGalaryItem({ preview, original}) {
       class="gallery__image"
       src="${preview}"
       data-source="${original}"
-      alt="Image description"
+      alt="${description}"
     />
   </a>
 </div>`
